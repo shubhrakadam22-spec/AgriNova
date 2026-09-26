@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgriSarthi</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">🌱</div>
+
+            <h1>AgriSarthi</h1>
+
+            <p>Smart Farming Assistant</p>
+
+        </div>
+
+
+        <nav>
+
+            <div class="menu-item" data-page="profilePage" id="profileMenuItem">
+                <span>👤</span>
+                <p data-i18n="navProfile">My Profile</p>
+            </div>
+
+
+            <div class="menu-item active" data-page="alertsPage">
+                <span>🔔</span>
+                <p data-i18n="navAlerts">Alerts & Advisory</p>
+            </div>
+
+
+            <div class="menu-item" data-page="voicePage">
+                <span>🎙️</span>
+                <p data-i18n="navVoice">Ask AgriVoice</p>
+            </div>
+
+
+            <div class="menu-item" data-page="weatherPage">
+                <span>☀️</span>
+                <p data-i18n="navWeather">Weather Center</p>
+            </div>
+
+
+            <div class="menu-item" data-page="cropPage">
+                <span>🌾</span>
+                <p data-i18n="navCrop">Crop History</p>
+            </div>
+
+
+            <div class="menu-item" data-page="sensorPage">
+                <span>📊</span>
+                <p data-i18n="navSensor">Sensor Dashboard</p>
+            </div>
+
+
+            <div class="menu-item" data-page="settingsPage">
+                <span>⚙️</span>
+                <p data-i18n="navSettings">Settings</p>
+            </div>
+
+            <div class="menu-item" data-page="feedbackPage">
+                <span>💬</span>
+                <p data-i18n="navFeedback">Feedback</p>
+            </div>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="top-bar">
+
+            <div>
+
+                <p class="dashboard-label" data-i18n="dashboard">DASHBOARD</p>
+
+                <h2 data-i18n="appName">AgriSarthi</h2>
+
+            </div>
+
+
+            <div class="status">
+                <span class="status-dot"></span>
+                <span data-i18n="aiOnline">AI Online</span>
+            </div>
+
+            <div class="user-account" id="userAccount">
+                <div class="user-avatar" id="userAvatar">G</div>
+                <div class="user-account-info">
+                    <strong id="userNameDisplay">Guest Farmer</strong>
+                    <span id="userFarmDisplay">Local profile</span>
+                </div>
+                <button class="account-button" id="accountButton" type="button">Login</button>
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= ALERTS ================= -->
+
+        <section class="page active" id="alertsPage">
+
+            <h1 data-i18n="alertsTitle">Alerts & Advisory</h1>
+
+            <p class="subtitle">
+                <span data-i18n="alertsSubtitle">Important updates and recommendations for your farm</span>
+            </p>
+
+
+            <div class="cards">
+
+
+                <div class="card warning">
+
+                    <div class="card-icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <h3 data-i18n="pestTitle">Pest Alert</h3>
+
+                        <p>
+                            <span data-i18n="pestText">Monitor your crops regularly for signs of pest activity.</span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <h3 data-i18n="irrigationTitle">Irrigation Advisory</h3>
+
+                        <p>
+                            <span data-i18n="irrigationText">Check soil moisture before your next irrigation cycle.</span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🌱
+                    </div>
+
+                    <div>
+
+                        <h3 data-i18n="cropAdvisoryTitle">Crop Advisory</h3>
+
+                        <p>
+                            <span data-i18n="cropAdvisoryText">Monitor crop growth and field conditions regularly.</span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= AGRIVOICE ================= -->
+
+        <section class="page" id="voicePage">
+
+            <h1 data-i18n="voiceTitle">Ask AgriVoice</h1>
+
+            <p class="subtitle">
+                <span data-i18n="voiceSubtitle">Speak about your crop or capture an image</span>
+            </p>
+
+
+            <div class="action-buttons">
+
+
+                <!-- MICROPHONE -->
+
+                <div class="action-item">
+
+                    <button
+                        id="micButton"
+                        class="action-button">
+
+                        🎙️
+
+                    </button>
+
+                    <p id="micText" data-i18n="tapSpeak">Tap to Speak</p>
+
+                </div>
+
+
+
+                <!-- CAMERA -->
+
+                <div class="action-item">
+
+                    <button
+                        id="cameraButton"
+                        class="action-button">
+
+                        📷
+
+                    </button>
+
+                    <p>
+                        <span data-i18n="liveCamera">Live Camera</span>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAMERA -->
+
+            <div
+                id="cameraContainer"
+                class="camera-container">
+
+                <video
+                    id="camera"
+                    autoplay
+                    playsinline>
+                </video>
+
+
+                <div class="camera-controls">
+
+                    <button
+                        id="captureButton"
+                        class="capture-button">
+
+                        <span data-i18n="capture">Capture</span>
+
+                    </button>
+
+
+                    <button
+                        id="closeCamera"
+                        class="close-button">
+
+                        <span data-i18n="closeCamera">Close Camera</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <canvas id="canvas"></canvas>
+
+
+            <img
+                id="preview"
+                class="preview"
+                alt="Captured crop image">
+
+
+            <!-- LANGUAGE -->
+
+            <div class="language-box">
+
+                <label for="language" data-i18n="selectLanguage">Select Language</label>
+
+
+                <select id="language">
+
+                    <option value="en-IN">
+                        English
+                    </option>
+
+                    <option value="hi-IN">
+                        हिंदी
+                    </option>
+
+                    <option value="mr-IN">
+                        मराठी
+                    </option>
+
+                    <option value="gu-IN">
+                        ગુજરાતી
+                    </option>
+
+                    <option value="ta-IN">
+                        தமிழ்
+                    </option>
+
+                    <option value="te-IN">
+                        తెలుగు
+                    </option>
+
+                    <option value="kn-IN">
+                        ಕನ್ನಡ
+                    </option>
+
+                    <option value="bn-IN">
+                        বাংলা
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= WEATHER ================= -->
+
+        <section class="page" id="weatherPage">
+
+            <h1 data-i18n="weatherTitle">Weather Center</h1>
+
+            <p class="subtitle">
+                <span data-i18n="weatherSubtitle">Current weather information for your farm</span>
+            </p>
+
+
+            <div class="weather-card">
+
+                <div class="weather-main">
+
+                    <span class="weather-icon">
+                        ☀️
+                    </span>
+
+                    <div>
+
+                        <h2>28°C</h2>
+
+                        <p data-i18n="partlyCloudy">Partly Cloudy</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="weather-details">
+
+                    <div>
+                        <b data-i18n="humidity">Humidity</b>
+                        <span>68%</span>
+                    </div>
+
+                    <div>
+                        <b data-i18n="rainfall">Rainfall</b>
+                        <span>20%</span>
+                    </div>
+
+                    <div>
+                        <b data-i18n="wind">Wind</b>
+                        <span>12 km/h</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <h3 class="section-title" data-i18n="forecastTitle">3-Day Forecast</h3>
+
+
+            <div class="forecast">
+
+                <div>
+                    <b data-i18n="today">Today</b>
+                    <span>☀️</span>
+                    <p>28°C</p>
+                </div>
+
+                <div>
+                    <b data-i18n="tomorrow">Tomorrow</b>
+                    <span>🌤️</span>
+                    <p>27°C</p>
+                </div>
+
+                <div>
+                    <b data-i18n="day3">Day 3</b>
+                    <span>🌧️</span>
+                    <p>25°C</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CROP HISTORY ================= -->
+
+        <section class="page" id="cropPage">
+
+            <h1 data-i18n="cropTitle">Crop History</h1>
+
+            <p class="subtitle">
+                <span data-i18n="cropSubtitle">Previous crops and farming records</span>
+            </p>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th data-i18n="cropHeader">Crop</th>
+
+                        <th data-i18n="seasonHeader">Season</th>
+
+                        <th data-i18n="sowingHeader">Sowing Date</th>
+
+                        <th data-i18n="statusHeader">Status</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>🌾 Rice</td>
+
+                        <td data-i18n="monsoon">Monsoon</td>
+
+                        <td>June 2026</td>
+
+                        <td data-i18n="harvested">Harvested</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>🌱 Soybean</td>
+
+                        <td data-i18n="monsoon">Monsoon</td>
+
+                        <td>July 2026</td>
+
+                        <td data-i18n="growing">Growing</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>🌽 Maize</td>
+
+                        <td data-i18n="winter">Winter</td>
+
+                        <td>November 2025</td>
+
+                        <td data-i18n="harvested">Harvested</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+
+        <!-- ================= SENSOR ================= -->
+
+        <section class="page" id="sensorPage">
+
+            <h1 data-i18n="sensorTitle">Sensor Dashboard</h1>
+
+            <p class="subtitle">
+                <span data-i18n="sensorSubtitle">Monitor important farm conditions</span>
+            </p>
+
+
+            <div class="sensor-grid">
+
+
+                <div class="sensor-card">
+
+                    <span>💧</span>
+
+                    <h3 data-i18n="soilMoisture">Soil Moisture</h3>
+
+                    <strong>64%</strong>
+
+                    <p data-i18n="good">Good</p>
+
+                </div>
+
+
+                <div class="sensor-card">
+
+                    <span>🌡️</span>
+
+                    <h3 data-i18n="temperature">Temperature</h3>
+
+                    <strong>27°C</strong>
+
+                    <p data-i18n="normal">Normal</p>
+
+                </div>
+
+
+                <div class="sensor-card">
+
+                    <span>🧪</span>
+
+                    <h3 data-i18n="soilPh">Soil pH</h3>
+
+                    <strong>6.8</strong>
+
+                    <p data-i18n="healthy">Healthy</p>
+
+                </div>
+
+
+                <div class="sensor-card">
+
+                    <span>💨</span>
+
+                    <h3 data-i18n="airHumidity">Air Humidity</h3>
+
+                    <strong>68%</strong>
+
+                    <p data-i18n="normal">Normal</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section class="page" id="settingsPage">
+
+            <h1 data-i18n="settingsTitle">Settings</h1>
+
+            <p class="subtitle">
+                <span data-i18n="settingsSubtitle">Manage your AgriSarthi preferences</span>
+            </p>
+
+
+            <div class="settings">
+
+
+                <div class="setting">
+
+                    <div>
+
+                        <h3 data-i18n="languageSetting">Language</h3>
+
+                        <p>
+                            <span data-i18n="chooseLanguage">Choose your preferred language</span>
+                        </p>
+
+                    </div>
+
+
+                    <select id="settingsLanguage" aria-label="Preferred language">
+                        <option value="en-IN">English</option>
+                        <option value="hi-IN">हिंदी</option>
+                        <option value="mr-IN">मराठी</option>
+                        <option value="gu-IN">ગુજરાતી</option>
+                        <option value="ta-IN">தமிழ்</option>
+                        <option value="te-IN">తెలుగు</option>
+                        <option value="kn-IN">ಕನ್ನಡ</option>
+                        <option value="bn-IN">বাংলা</option>
+                    </select>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div>
+
+                        <h3 data-i18n="notifications">Notifications</h3>
+
+                        <p>
+                            <span data-i18n="receiveAlerts">Receive farming alerts</span>
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            checked>
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <div>
+
+                        <h3 data-i18n="aiAssistance">AI Assistance</h3>
+
+                        <p>
+                            <span data-i18n="enableVoice">Enable AgriVoice assistance</span>
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            checked>
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MY PROFILE ================= -->
+
+        <section class="page" id="profilePage">
+            <h1 data-i18n="profileTitle">My Farmer Profile</h1>
+            <p class="subtitle" data-i18n="profileSubtitle">Save your farm details on this device for a personalized dashboard.</p>
+
+            <div id="profileSummary" class="profile-summary hidden">
+                <div class="profile-avatar-large" id="profileAvatarLarge">F</div>
+                <h2 id="profileSummaryName">Farmer</h2>
+                <p class="profile-summary-id" id="profileSummaryId">Farmer ID</p>
+                <div class="profile-details" id="profileDetails">
+                    <div><span>🏡</span><strong data-i18n="profileFarmLabel">Farm</strong><p id="profileSummaryFarm">—</p></div>
+                    <div><span>📍</span><strong data-i18n="profileLocationLabel">Location</strong><p id="profileSummaryVillage">—</p></div>
+                    <div><span>🌾</span><strong data-i18n="profileCropLabel">Main Crop</strong><p id="profileSummaryCrop">—</p></div>
+                    <div><span>📐</span><strong data-i18n="profileLandLabel">Land Size</strong><p id="profileSummaryLand">—</p></div>
+                    <div><span>📱</span><strong data-i18n="profilePhoneLabel">Phone</strong><p id="profileSummaryPhone">—</p></div>
+                </div>
+                <button class="profile-edit" id="profileEditButton" type="button"><span aria-hidden="true">✏️</span> <span data-i18n="editProfile">Edit Profile</span></button>
+            </div>
+
+            <form id="profileForm" class="profile-form">
+                <div class="profile-grid">
+                    <div>
+                        <label for="profileName" data-i18n="profileName">Farmer name</label>
+                        <input id="profileName" maxlength="60" required>
+                    </div>
+                    <div>
+                        <label for="profileFarm" data-i18n="profileFarm">Farm name</label>
+                        <input id="profileFarm" maxlength="60">
+                    </div>
+                    <div>
+                        <label for="profileVillage" data-i18n="profileVillage">Village / Location</label>
+                        <input id="profileVillage" maxlength="80">
+                    </div>
+                    <div>
+                        <label for="profileCrop" data-i18n="profileCrop">Main crop</label>
+                        <input id="profileCrop" maxlength="60">
+                    </div>
+                    <div>
+                        <label for="profileLand" data-i18n="profileLand">Land size (acres)</label>
+                        <input id="profileLand" type="number" min="0" step="0.1">
+                    </div>
+                    <div>
+                        <label for="profilePhone" data-i18n="profilePhone">Phone (optional)</label>
+                        <input id="profilePhone" type="tel" maxlength="20">
+                    </div>
+                </div>
+                <button class="profile-save" type="submit" data-i18n="saveProfile">Save Profile</button>
+                <span class="profile-status" id="profileStatus"></span>
+            </form>
+        </section>
+
+
+        <!-- ================= FEEDBACK ================= -->
+
+        <section class="page" id="feedbackPage">
+
+            <h1 data-i18n="feedbackTitle">Feedback</h1>
+
+            <p class="subtitle" data-i18n="feedbackSubtitle">Tell us how AgriSarthi can serve farmers better</p>
+
+            <form id="feedbackForm" class="feedback-form">
+
+                <div class="feedback-rating">
+                    <p data-i18n="ratingLabel">How would you rate your experience?</p>
+                    <div class="rating-options" role="radiogroup" aria-label="Rating">
+                        <button type="button" class="rating-btn" data-rating="1" aria-label="1 star">★</button>
+                        <button type="button" class="rating-btn" data-rating="2" aria-label="2 stars">★</button>
+                        <button type="button" class="rating-btn" data-rating="3" aria-label="3 stars">★</button>
+                        <button type="button" class="rating-btn" data-rating="4" aria-label="4 stars">★</button>
+                        <button type="button" class="rating-btn" data-rating="5" aria-label="5 stars">★</button>
+                    </div>
+                    <input type="hidden" id="feedbackRating" value="0">
+                </div>
+
+                <label for="feedbackCategory" data-i18n="categoryLabel">Feedback type</label>
+                <select id="feedbackCategory">
+                    <option value="general" data-i18n="generalFeedback">General feedback</option>
+                    <option value="feature" data-i18n="featureRequest">Feature request</option>
+                    <option value="bug" data-i18n="bugReport">Report a problem</option>
+                    <option value="advisory" data-i18n="advisoryFeedback">Advisory quality</option>
+                </select>
+
+                <label for="feedbackMessage" data-i18n="messageLabel">Your feedback</label>
+                <textarea id="feedbackMessage" rows="5" maxlength="500" placeholder="Share your suggestions or experience..." data-i18n-placeholder="feedbackPlaceholder"></textarea>
+
+                <button type="submit" class="feedback-submit" data-i18n="submitFeedback">Submit Feedback</button>
+                <p id="feedbackStatus" class="feedback-status" role="status"></p>
+
+            </form>
+
+            <div class="feedback-summary" id="feedbackSummary" hidden>
+                <strong data-i18n="thankYou">Thank you for your feedback!</strong>
+                <span data-i18n="feedbackSaved">Your response has been saved on this device.</span>
+            </div>
+
+        </section>
+
+
+        <!-- ================= RESPONSE ================= -->
+
+        <div class="response-box">
+
+            <strong>AgriVoice:</strong>
+
+            <span id="response" data-i18n="readyResponse">Your AI farming assistant is ready.</span>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- ================= LOCAL ACCOUNT LOGIN ================= -->
+    <div class="login-overlay hidden" id="loginOverlay" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+        <div class="login-card">
+            <div class="logo-icon">🌱</div>
+            <h2 id="loginTitle" data-i18n="loginTitle">Farmer Login</h2>
+            <p data-i18n="loginSubtitle">Create a simple farmer profile so your saved details stay available on this device.</p>
+            <label for="loginName" data-i18n="loginName">Farmer name</label>
+            <input id="loginName" type="text" maxlength="60" placeholder="Enter your name">
+            <label for="loginId" data-i18n="loginId">Farmer ID</label>
+            <input id="loginId" type="text" maxlength="30" placeholder="e.g. FARM001">
+            <div class="login-actions">
+                <button class="login-primary" id="loginSubmit" type="button" data-i18n="loginButton">Login / Create Profile</button>
+                <button class="login-secondary" id="loginCancel" type="button" data-i18n="cancel">Cancel</button>
+            </div>
+            <div class="login-status" id="loginStatus"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
